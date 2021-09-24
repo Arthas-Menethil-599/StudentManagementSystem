@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="main_section">
+
+  <div class="container" style="border-width: 10px; background-color: burlywood">
+    <form th:action="@{/admin-panel/add-teacher}" method="post">
+      <label>NAME:</label>
+      <br/>
+      <input name = "name" type="text"/>
+      <br/>
+      <label>SURNAME:</label>
+      <br/>
+      <input name="surname" type="text"/>
+      <br/>
+      <label>COURSE:</label>
+      <select name="course_id" class="custom-select" size="1">
+        <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
+      </select>
+      <br/>
+      <label>EMAIL:</label>
+      <br/>
+      <input name="email" type="email" />
+      <br/>
+      <label>PASSWORD:</label>
+      <br/>
+      <input name="password" type="password" />
+      <br/>
+      <label>CONFIRM PASSWORD:</label>
+      <br/>
+      <input name="confirm_password" type="password"/>
+      <br/>
+      <button class="btn btn-primary" th:text="ADD" style="margin: 5px"/>
+    </form>
+  </div>
+  <table class="table">
+    <thead class="table-dark">
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        NAME
+      </th>
+      <th>
+        SURNAME
+      </th>
+      <th>
+        EMAIL
+      </th>
+      <th>
+        ACTIONS
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="teacher : ${teachers}">
+      <form th:action="@{/admin-panel/update-student}" method="post">
+        <td>
+          <input th:value="${teacher.id}" name = "id" th:type="hidden"/>
+          <h5 th:text="${teacher.id}"></h5>
+        </td>
+        <td>
+          <input th:value="${teacher.name}" name = "name" th:type="text"/>
+        </td>
+        <td>
+          <input th:value="${teacher.surname}" name="surname" th:type="text"/>
+        </td>
+        <td>
+          <input th:value="${teacher.dbUser.email}" name="email" type="email" />
+        </td>
+        <td>
+          <button class="btn btn-primary" th:text="Change" />
+          <a class="btn btn-primary center" th:href="@{'/change-password/' + ${teacher.id}}">Change password</a>
+          <form th:action="@{/admin-panel/delete-teacher/}" method="post">
+            <input th:value="${teacher.id}" th:type="hidden">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </td>
+      </form>
+
+    </tr>
+    </tbody>
+  </table>
+</div>

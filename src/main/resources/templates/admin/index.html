@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="main_section">
+    <h1>MENU</h1>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" style="font-size: 30px" th:href="@{/admin-panel/students-control}">Students control</a>
+    <a class="dropdown-item" style="font-size: 30px" th:href="@{/admin-panel/teachers-control}">Teachers control</a>
+    <a class="dropdown-item" style="font-size: 30px" th:href="@{/admin-panel/groups-control}">Groups control</a>
+    <a class="dropdown-item" style="font-size: 30px" th:href="@{/admin-panel/courses-control}">Courses control</a>
+
+    <div class="dropdown-divider"></div>
+
+</div>
