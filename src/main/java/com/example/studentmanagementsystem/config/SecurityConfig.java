@@ -28,6 +28,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin-panel/")
                 .hasRole("ADMIN");
 
+        http.authorizeRequests()
+                .antMatchers("/my-students/")
+                .hasRole("TEACHER");
+
+        http.authorizeRequests()
+                .antMatchers("/my-courses/")
+                .hasRole("STUDENT");
+
         http.formLogin().loginPage("/login").permitAll()
                 .loginProcessingUrl("/auth").permitAll()
                 .usernameParameter("email")
@@ -36,8 +44,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .failureUrl("/login?error");
 
+                http.csrf().disable();
+
         http.logout().
-                logoutSuccessUrl("/login").permitAll();
+                logoutSuccessUrl("/logout").permitAll();
     }
 
     @Override

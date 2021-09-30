@@ -1,7 +1,6 @@
 package com.example.studentmanagementsystem.services;
 
 import com.example.studentmanagementsystem.entities.DbUser;
-import com.example.studentmanagementsystem.entities.Role;
 import com.example.studentmanagementsystem.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;

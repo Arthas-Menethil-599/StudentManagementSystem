@@ -1,10 +1,9 @@
 package com.example.studentmanagementsystem.services;
 
 import com.example.studentmanagementsystem.entities.DbUser;
-import com.example.studentmanagementsystem.entities.Group;
 import com.example.studentmanagementsystem.entities.Student;
+import com.example.studentmanagementsystem.repositories.GradeRepository;
 import com.example.studentmanagementsystem.repositories.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +13,11 @@ public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
 
-    public StudentServiceImpl(StudentRepository studentRepository) {
+    private final GradeRepository gradeRepository;
+
+    public StudentServiceImpl(StudentRepository studentRepository, GradeRepository gradeRepository) {
         this.studentRepository = studentRepository;
+        this.gradeRepository = gradeRepository;
     }
 
     @Override
@@ -47,4 +49,6 @@ public class StudentServiceImpl implements StudentService {
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
+
+
 }

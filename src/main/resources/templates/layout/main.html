@@ -22,11 +22,23 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{'/'}">Home</a>
                     </li>
-                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <li class="nav-item" sec:authorize="isAnonymous()">
+                        <a class="nav-link" th:href="@{'/login'}">log in</a>
+                    </li>
+                    <li class="nav-item" th:if="${student != null}" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{'/profile'}"  th:text="${student.name} + ' ' + ${student.surname} + '  Group: ' + ${student.group.name}"></a>
+                    </li>
+                    <li class="nav-item" th:if="${teacher != null}" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{'/profile'}"  th:text="'Name: ' + ${teacher.name} + '  Surname: ' + ${teacher.surname}"></a>
+                    </li>
+                    <li class="nav-item" th:if="${user != null}" sec:authorize="isAuthenticated()">
                         <a class="nav-link" th:href="@{'/profile'}" th:text="${user.email}"></a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
                         <a class="nav-link" th:href="@{'/admin-panel/'}">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/my-courses'}" sec:authorize="hasRole('ROLE_STUDENT')">my courses</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyRole('ROLE_TEACHER')">
                         <a class="nav-link" th:href="@{'/my-students/'}">my students</a>

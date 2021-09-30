@@ -9,6 +9,7 @@ import com.example.studentmanagementsystem.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class GradeServiceImpl implements GradeService {
@@ -23,7 +24,8 @@ public class GradeServiceImpl implements GradeService {
         this.courseRepository = courseRepository;
     }
 
-    Grade setGrade(Long studentId, Long courseId, Integer grade) {
+    @Override
+    public Grade setGrade(Long studentId, Long courseId, Integer grade) {
         if(grade <= 0) {
             grade = 1;
         } else if (grade > 12) {
@@ -32,5 +34,22 @@ public class GradeServiceImpl implements GradeService {
         var student = studentRepository.getById(studentId);
         var course = courseRepository.getById(courseId);
         return gradeRepository.save(new Grade(student, course, grade));
+    }
+
+    @Override
+    public Integer getAverageGradeForCourse(Course course, Student student) {
+        List<Grade> grades = gradeRepository.findAllByCourseAndStudent(course, student);
+
+        if (!(Objects.isNull(grades) || grades.isEmpty())) {
+            Integer result = 0;
+
+            for (Grade grade : grades) {
+                result += grade.getGrade();
+            }
+
+            return result / grades.size();
+        }
+        var minimalGrade = 1;
+        return minimalGrade;
     }
 }

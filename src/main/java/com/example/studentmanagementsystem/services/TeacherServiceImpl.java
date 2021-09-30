@@ -1,8 +1,6 @@
 package com.example.studentmanagementsystem.services;
 
-import com.example.studentmanagementsystem.entities.Course;
 import com.example.studentmanagementsystem.entities.DbUser;
-import com.example.studentmanagementsystem.entities.Student;
 import com.example.studentmanagementsystem.entities.Teacher;
 import com.example.studentmanagementsystem.repositories.TeacherRepository;
 import org.springframework.stereotype.Service;

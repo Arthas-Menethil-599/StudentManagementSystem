@@ -4,12 +4,14 @@ package com.example.studentmanagementsystem.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.List;
 
 @Entity
 @Data
@@ -22,9 +24,7 @@ public class Teacher extends BaseEntity {
 
     private String surname;
 
-    @OneToMany
-    private List<Course> courses;
-
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @NotFound(action = NotFoundAction.IGNORE)
     private DbUser dbUser;
 }

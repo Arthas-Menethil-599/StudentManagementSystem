@@ -4,9 +4,17 @@
       layout:decorate="~{layout/main}">
 
 <div layout:fragment="main_section">
-    <h1 th:text="${studentOrTeacher.name}"></h1>
-    <h1 th:text="${studentOrTeacher.surname}"></h1>
-    <h1></h1>
+    <div th:if="${student != null}" class="container">
+        <h1 th:text="${student.name}"></h1>
+        <h1 th:text="${student.surname}"></h1>
+    </div>
+    <div th:if="${teacher != null}" class="container">
+        <h1 th:text="${teacher.name}"></h1>
+        <h1 th:text="${teacher.surname}"></h1>
+    </div>
+    <div th:if="${user != null}" class="container">
+        <h1 th:text="${user.email}"></h1>
+    </div>
 </div>
 
 </html>

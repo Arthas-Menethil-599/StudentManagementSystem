@@ -14,11 +14,6 @@
       <br/>
       <input name="surname" type="text"/>
       <br/>
-      <label>COURSE:</label>
-      <select name="course_id" class="custom-select" size="1">
-        <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
-      </select>
-      <br/>
       <label>EMAIL:</label>
       <br/>
       <input name="email" type="email" />
@@ -56,7 +51,7 @@
     </thead>
     <tbody>
     <tr th:each="teacher : ${teachers}">
-      <form th:action="@{/admin-panel/update-student}" method="post">
+      <form th:action="@{/admin-panel/update-teacher}" method="post">
         <td>
           <input th:value="${teacher.id}" name = "id" th:type="hidden"/>
           <h5 th:text="${teacher.id}"></h5>
@@ -72,14 +67,12 @@
         </td>
         <td>
           <button class="btn btn-primary" th:text="Change" />
-          <a class="btn btn-primary center" th:href="@{'/change-password/' + ${teacher.id}}">Change password</a>
-          <form th:action="@{/admin-panel/delete-teacher/}" method="post">
-            <input th:value="${teacher.id}" th:type="hidden">
-            <button class="btn btn-danger">Delete</button>
-          </form>
-        </td>
       </form>
-
+      <a class="btn btn-primary center" th:href="@{'/change-password/' + ${teacher.id}}">Change password</a>
+      <form th:action="@{'/admin-panel/delete-teacher/' + ${teacher.id}}" th:method="delete">
+        <button class="btn btn-danger">Delete</button>
+      </form>
+      </td>
     </tr>
     </tbody>
   </table>

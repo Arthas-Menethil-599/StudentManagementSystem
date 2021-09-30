@@ -15,8 +15,8 @@
             <input name="surname" type="text"/>
             <br/>
             <label>GROUP:</label>
-            <select name="group_id" class="custom-select" size="1" th:each="group : ${groups}">
-                <option th:value="${group.id}" th:text="${group.name}"></option>
+            <select name="group_id" class="custom-select" size="1">
+                <option th:each="group : ${groups}" th:value="${group.id}" th:text="${group.name}"></option>
             </select>
             <br/>
             <label>EMAIL:</label>
@@ -72,14 +72,13 @@
                 </td>
                 <td>
                     <button class="btn btn-primary" th:text="Change" />
-                    <a class="btn btn-primary center" th:href="@{'/change-password/' + ${student.id}}">Change password</a>
-                    <form th:action="@{/admin-panel/delete-student/}" method="post">
-                        <input th:value="${student.id}" th:type="hidden">
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </form>
 
+            </form>
+            <a class="btn btn-primary center" th:href="@{'/change-password/' + ${student.id}}">Change password</a>
+            <form th:action="@{'/admin-panel/delete-student/' + ${student.id}}" th:method="delete">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+            </td>
         </tr>
         </tbody>
     </table>

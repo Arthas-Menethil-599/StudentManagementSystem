@@ -24,4 +24,14 @@ public class GroupServiceImpl implements GroupService {
     public Group getGroup(Long id) {
         return groupRepository.getById(id);
     }
+
+    @Override
+    public Group addOrUpdateGroup(Group group) {
+        return groupRepository.save(group);
+    }
+
+    @Override
+    public void deleteGroup(Long id) {
+        groupRepository.deleteById(id);
+    }
 }

@@ -1,10 +1,9 @@
 package com.example.studentmanagementsystem.services;
 
-import java.util.List;
-import com.example.studentmanagementsystem.entities.Course;
 import com.example.studentmanagementsystem.entities.DbUser;
-import com.example.studentmanagementsystem.entities.Student;
 import com.example.studentmanagementsystem.entities.Teacher;
+
+import java.util.List;
 
 public interface TeacherService {
 

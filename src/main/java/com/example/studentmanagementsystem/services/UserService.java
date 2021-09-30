@@ -1,7 +1,6 @@
 package com.example.studentmanagementsystem.services;
 
 import com.example.studentmanagementsystem.entities.DbUser;
-import com.example.studentmanagementsystem.entities.Role;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;

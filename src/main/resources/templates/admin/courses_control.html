@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="main_section">
 
-</body>
-</html>
+    <div class="container" style="border-width: 10px; background-color: burlywood">
+        <form th:action="@{/admin-panel/add-course}" method="post">
+            <label>NAME:</label>
+            <br/>
+            <input name = "name" type="text"/>
+            <br/>
+            <select name="teacher_id" class="custom-select" size="1">
+                <option th:each="teacher : ${teachers}" th:value="${teacher.id}" th:text="${teacher.name}"></option>
+            </select>
+            <br/>
+            <select name="group_id" class="custom-select" size="1">
+                <option th:each="group : ${groups}" th:value="${group.id}" th:text="${group.name}"></option>
+            </select>
+            <br/>
+            <button class="btn btn-primary" th:text="ADD" style="margin: 5px"/>
+        </form>
+    </div>
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                NAME
+            </th>
+            <th>
+                ACTIONS
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course : ${courses}">
+            <form th:action="@{/admin-panel/update-course}" method="post">
+                <td>
+                    <input th:value="${course.id}" name = "id" th:type="hidden"/>
+                    <h5 th:text="${course.id}"></h5>
+                </td>
+                <td>
+                    <input th:value="${course.name}" name = "name" th:type="text"/>
+                    <button class="btn btn-primary" th:text="Change" />
+                </td>
+            </form>
+            <td>
+                <form th:action="@{'/admin-panel/delete-course/' + ${course.id}}" th:method="delete">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+</div>

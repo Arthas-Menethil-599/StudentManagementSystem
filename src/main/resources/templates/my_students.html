@@ -33,6 +33,16 @@
         </td>
         <td th:text="${student.dbUser.email}">
         </td>
+        <td>
+            <form th:action="@{/set-grade}" method="post">
+                <input name="student_id" th:type="hidden" th:value="${student.id}">
+                <select name="course_id" class="custom-select" size="1">
+                    <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
+                </select>
+                <input name="grade" th:type="number">
+                <button class="btn btn-primary">set grade</button>
+            </form>
+        </td>
     </tr>
     </tbody>
   </table>

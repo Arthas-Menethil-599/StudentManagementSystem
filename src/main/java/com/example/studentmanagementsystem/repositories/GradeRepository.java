@@ -11,4 +11,6 @@ import java.util.List;
 
 @Repository
 public interface GradeRepository extends JpaRepository<Grade, Long> {
+
+    List<Grade> findAllByCourseAndStudent(Course course, Student student);
 }
